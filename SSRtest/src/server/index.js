@@ -4,7 +4,7 @@ import React from 'react';
 import ReactCC from 'react-dom/server'
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
-
+require("../benchmark/benchmarkRunner");
 import App from '../shared/App';
 
 // can pass in max-size, otherwise defaults to 1 million
@@ -23,7 +23,7 @@ const htmlEnd = "</div></body></html>";
 
 
 const streamingStart = {
-  sliceStartCount: htmlStart.length, 
+  sliceStartCount: htmlStart.length,
 };
 /**
  * @param clientStats Parameter passed by hot server middleware
@@ -44,7 +44,7 @@ export default ({ clientStats }) => async (req, res) => {
   // else if (true){
     const app = <App />;
     const start_cached = process.hrtime();
-    
+
     const appString = await ReactCC.renderToString(app);
     const end_cached = process.hrtime(start_cached);
     console.info(
@@ -54,7 +54,7 @@ export default ({ clientStats }) => async (req, res) => {
     );
     const chunkNames = flushChunkNames();
     const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
-   
+
     res.render("index", {
       appString,
       js,
@@ -62,5 +62,5 @@ export default ({ clientStats }) => async (req, res) => {
       cssHash
     });
   // }
-    
+
    };

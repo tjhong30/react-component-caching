@@ -9,7 +9,8 @@
     "build": "npm run build:client && npm run build:server && npm run build:node",
     "build:client": "cross-env NODE_ENV=production webpack -p --config webpack/client.production.js",
     "build:server": "cross-env NODE_ENV=production webpack -p --config webpack/server.production.js",
-    "build:node": "cross-env NODE_ENV=production webpack -p --config webpack/node.production.js"
+    "build:node": "cross-env NODE_ENV=production webpack -p --config webpack/node.production.js",
+    "benchmark": "NODE_ENV=production node index.js"
   },
   "keywords": [
     "ssr",
@@ -37,7 +38,8 @@
     "react-universal-component": "^2.5.5",
     "redis": "^2.8.0",
     "webpack-flush-chunks": "^1.1.23",
-    "winston": "^2.3.1"
+    "winston": "^2.3.1",
+    "benchmark": "^2.1.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
